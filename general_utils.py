@@ -119,7 +119,7 @@ def authorize_google_credentials():
     return google_client
 
 # get ml db connection
-def get_ctlml_connection():
+def get_db_connection():
     username = credentials['user']
     password = credentials['password']
     host = credentials['host']
@@ -131,7 +131,7 @@ def get_ctlml_connection():
     return connection
 
 # write dataframe to mysql database
-def write_to_ctlml(df,TABLE_NAME,IF_EXISTS,CHUNK_SIZE):
-    connection=get_ctlml_connection()
+def write_to_db(df,TABLE_NAME,IF_EXISTS,CHUNK_SIZE):
+    connection=get_db_connection()
     df.to_sql(con=connection,name=TABLE_NAME,if_exists=IF_EXISTS,chunksize=CHUNK_SIZE)
     
